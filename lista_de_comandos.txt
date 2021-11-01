@@ -108,7 +108,7 @@ npm i core-js
 
 #Npm (Alumni)
 
-nmp install #Instala todas las dependencia de React
+nmp install #Instala todas las dependencias de React
 
 npx create-react-app [nombre de la aplicacion]
 
