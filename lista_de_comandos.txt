@@ -118,6 +118,10 @@ npm i @babel/core babel-loader @babe/preset-env @babel/preset-react
 
 npm i webpack webpack-cli webpack-dev-server --save-dev
 
+npm install --save redux react-redux
+
+npm install --save @material-ui/core
+
 #Entorno funcionando
 
 1. Descargar el repositorio completo de github

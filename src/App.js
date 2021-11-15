@@ -1,13 +1,24 @@
 import React, {useState} from 'react';
 import './App.css';
 import { HashRouter, Link, NavLink, Route, Routes, Switch } from 'react-router-dom';
+import { createStore } from 'redux';
+import Button from '@material-ui/core/Button';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles' ;
+import Grid from '@material-ui/core/Grid';
+import {Transition, CSSTransition} from 'react-transition-group/Transition';
 
 function App(){
 	return(
     <HashRouter>
+    <MuiThemeProvider theme = {theme}>
+    <Grid container>
 		<div className = 'app'>
+      <Grid item xs = {12}>
 			<h1>Hola Clase 2 de React</h1>
-      <Contador />
+      </Grid>
+      <Grid item xs = {6}>
+      <Contador titulo />
+      </Grid>
       <NavLink to='/contacto' activestyle = {{ color : 'red' }}>Contacto</NavLink>
       &nbsp;
       <NavLink to='/acercanuestro' activestyle = {{ color : 'red' }}>Acerca Nuestro</NavLink>
@@ -16,7 +27,11 @@ function App(){
           <Route path='/acercanuestro' component= {AcercaNuestro} />
           <Route path='' component= {Home} />
         </Routes>
+
+      <Button>Enviar</Button>
 		</div>
+    </Grid>
+    </MuiThemeProvider>
     </HashRouter>
 	);
 }
@@ -47,5 +62,43 @@ function Contador(){
     </div>
   );
 }
+
+//ACTIONS -> REDUCER -> STORE
+
+let action = { type: 'AUMENTAR'};
+let reducer = (state = 0, action) => {
+  switch (action.type){
+    case 'AUMENTAR':
+      return state + 1;
+    case 'DISMINUIR':
+      return state - 1;
+    default :
+      return state;
+  }
+};
+
+let store = createStore(reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+store.subscribe(() =>
+console.log(store.getState(),
+console.log(titulo))
+);
+
+store.dispatch({ type: 'AUMENTAR'});
+store.dispatch({ type: 'AUMENTAR'});
+store.dispatch({ type: 'AUMENTAR'});
+store.dispatch({ type: 'DISMINUIR'});
+
+const theme = createMuiTheme({
+  overrides : {
+    MuiButton : {
+      text : {
+        color: 'green'
+      },
+    },
+  }
+});
 
 export default App;
