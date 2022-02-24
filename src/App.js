@@ -10,8 +10,6 @@ import {Transition, CSSTransition} from 'react-transition-group/Transition';
 function App(){
 	return(
     <HashRouter>
-    <MuiThemeProvider theme = {theme}>
-    <Grid container>
 		<div className = 'app'>
       <Grid item xs = {12}>
 			<h1>Hola Clase 2 de React</h1>
@@ -30,8 +28,6 @@ function App(){
 
       <Button>Enviar</Button>
 		</div>
-    </Grid>
-    </MuiThemeProvider>
     </HashRouter>
 	);
 }
@@ -82,8 +78,7 @@ let store = createStore(reducer,
 );
 
 store.subscribe(() =>
-console.log(store.getState(),
-console.log(titulo))
+console.log(store.getState())
 );
 
 store.dispatch({ type: 'AUMENTAR'});
@@ -91,14 +86,5 @@ store.dispatch({ type: 'AUMENTAR'});
 store.dispatch({ type: 'AUMENTAR'});
 store.dispatch({ type: 'DISMINUIR'});
 
-const theme = createMuiTheme({
-  overrides : {
-    MuiButton : {
-      text : {
-        color: 'green'
-      },
-    },
-  }
-});
 
 export default App;
